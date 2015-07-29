@@ -1,5 +1,22 @@
 <?php
 
+/** Função que valida o número do cartão através do Algoritmo de Luhn
+* @link https://en.wikipedia.org/wiki/Luhn_algorithm
+* @param $numero - Número do cartão, deve ter entre 13 e 19 caracteres numéricos
+* @return bool - TRUE caso o número seja válido, FALSE caso contrário
+*/
+function validarCartao($numero){
+	$numero = preg_replace("/[^0-9]/", "", $numero); //remove caracteres não numéricos
+	if(strlen($numero) < 13 || strlen($numero) > 19)
+		return false;
+
+	$soma = '';
+	foreach(array_reverse(str_split($numero)) as $i => $n){ 
+		$soma .= ($i % 2) ? $n * 2 : $n; 
+	}
+	return array_sum(str_split($soma)) % 10 == 0;
+}
+
 /** Função que procura a bandeira do cartão a partir do seu número
 * Para a criação das expressões foram utilizadas listas encontradas na internet, abaixo link com as listas
 * @link https://gist.github.com/erikhenrique/5931368
