@@ -1,5 +1,7 @@
 <?php
 
+class CartaoCredito {
+	private $numero;
 /** Função que valida o número do cartão através do Algoritmo de Luhn
 * @link https://en.wikipedia.org/wiki/Luhn_algorithm
 * @param $numero - Número do cartão, deve ter entre 13 e 19 caracteres numéricos
@@ -54,5 +56,7 @@ function obterBandeira($numero){
 	}
 
 	return false;
+
+}
 
 }
